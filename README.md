@@ -60,7 +60,7 @@ model.train(
     project='results',
     name='car_detection',
     exist_ok=True
-)
+) ```
 
 ---
 
