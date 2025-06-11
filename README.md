@@ -18,6 +18,12 @@ This repository contains solutions to real-time parking space detection and car 
 - **Objective:** Use a steady surveillance video feed to detect available parking spaces in real time.
 - **Method:** Manually define empty slots once → Apply YOLOv8s per frame → Check car presence inside predefined slots.
 - **Output:** Dynamic counter showing available vs. occupied spaces (e.g., 12 → 11).
+- 🧠 How It Works
+
+        1. **YOLOv8 Inference**: Pretrained YOLOv8 model detects objects in each frame.
+        2. **Centroid Calculation**: For each detection, centroid `(cx, cy)` is calculated.
+        3. **AOI Detection**: Using `cv2.pointPolygonTest()`, we check if a vehicle centroid lies within any AOI.
+        4. **Slot Matching**: If it lies inside an AOI, the vehicle is considered to occupy that slot.
 
 ---
 
