@@ -6,7 +6,7 @@ This repository contains solutions to real-time parking space detection and car 
 
 ## 🚩 Problem Statements & Objectives
 
-### Task 1: YOLOv8 Training and Inference on Images
+### Task 1: YOLOv8 Training and Inference on Images(With fine tuning)
 - **Objective:** Train a YOLOv8s model to detect parking slots as `empty` or `occupied`.
 - **Output:** Bounding boxes with confidence scores and class labels.
 
@@ -14,7 +14,7 @@ This repository contains solutions to real-time parking space detection and car 
 - **Objective:** Export the trained model to ONNX format and evaluate performance using GPU with ONNXRuntime.
 - **Output:** Frame-wise inference with FPS benchmarking.
 
-### Task 3: Parking Space & Car Counting (Steady Camera)
+### Parking Space & Car Counting (without fine tuning)
 - **Objective:** Use a steady surveillance video feed to detect available parking spaces in real time.
 - **Method:** Manually define empty slots once → Apply YOLOv8s per frame → Check car presence inside predefined slots.
 - **Output:** Dynamic counter showing available vs. occupied spaces (e.g., 12 → 11).
