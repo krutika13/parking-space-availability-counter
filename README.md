@@ -47,25 +47,6 @@ This repository contains solutions to real-time parking space detection and car 
   
 ---
 
-## Training Command
-
-```python
-from ultralytics import YOLO
-
-model = YOLO('yolov8s.yaml')  # small YOLO model
-model.train(
-    data="data.yaml",
-    epochs=50,
-    imgsz=640,
-    batch=8,
-    project='results',
-    name='car_detection',
-    exist_ok=True
-)
-
-
----
-
 
 ## Model Performance
 
