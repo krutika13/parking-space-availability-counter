@@ -48,6 +48,7 @@ This repository contains solutions to real-time parking space detection and car 
 ---
 
 ## Training Command
+
 ```python
 from ultralytics import YOLO
 
@@ -60,9 +61,11 @@ model.train(
     project='results',
     name='car_detection',
     exist_ok=True
-) ```
+)
+
 
 ---
+
 
 ## Model Performance
 
