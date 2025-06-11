@@ -1,20 +1,72 @@
-# parking-space-availability-counter
-Parking Space &amp; Car Counting with YOLOv8  A computer vision project using YOLOv8s to detect parked cars, count cars, and identify available parking spaces in real-time. Supports ONNX and TFLite model export for edge deployment. Includes evaluation tools like F1 scores and precision-recall curves.
+# Parking Space and Car Counting (YOLOv8-based)
 
-## Structure
+This repository contains solutions to real-time parking space detection and car counting using YOLOv8. It covers the following tasks:
 
-- **Task1/** – YOLOv8 training and image-based predictions to generalize across scenes.  
-- **Task2/** – Export of the trained model to ONNX format with GPU inference for real-time detection.  
-- **Parking_Space_and_Car_Counting_Steady_Camera/** – A full pipeline that assumes a fixed surveillance camera. Instead of training, parking slots are manually boxed once. YOLOv8s is applied on every frame to detect cars. If a car's detection overlaps with an empty slot, it marks the slot as occupied. The available parking count is updated in real-time (e.g., from 12 to 11 as cars arrive).
+---
 
-Both approaches aim to achieve the same goal—Task1 and Task2 rely on a trained model for generalization, while the steady camera method offers a lightweight and static alternative.
+## 🚩 Problem Statements & Objectives
+
+### Task 1: YOLOv8 Training and Inference on Images
+- **Objective:** Train a YOLOv8s model to detect parking slots as `empty` or `occupied`.
+- **Output:** Bounding boxes with confidence scores and class labels.
+
+### Task 2: Model Export & GPU Inference (ONNX)
+- **Objective:** Export the trained model to ONNX format and evaluate performance using GPU with ONNXRuntime.
+- **Output:** Frame-wise inference with FPS benchmarking.
+
+### Task 3: Parking Space & Car Counting (Steady Camera)
+- **Objective:** Use a steady surveillance video feed to detect available parking spaces in real time.
+- **Method:** Manually define empty slots once → Apply YOLOv8s per frame → Check car presence inside predefined slots.
+- **Output:** Dynamic counter showing available vs. occupied spaces (e.g., 12 → 11).
+
+---
+
+## 📦 Data Sources & Preprocessing
+
+- **Source:** Custom parking lot dataset (annotated with `empty` and `occupied`).
+- **Split:**
+  - Train: 70%
+  - Validation: 20%
+  - Test: 10%
+- **Preprocessing:**
+  - Resize all images to 640x640
+  - Normalization [0, 1] pixel values
+  - Format: YOLO `.txt` annotations with bounding boxes
+
+---
+
+## 🧠 Model Architectures & Training Pipeline
+
+- **Backbone:** [YOLOv8s](https://github.com/ultralytics/ultralytics)
+- **Input Size:** 640x640
+- **Epochs:** 50  
+- **Batch Size:** 8  
+- **Loss Function:** YOLOv8's native object detection loss (classification + box regression)
+- **Optimizer:** SGD with momentum  
+- **Augmentation:** HSV shift, flip, mosaic, mixup (Ultralytics defaults)
+
+### Training Command
+```bash
+from ultralytics import YOLO
+
+model = YOLO('yolov8s.yaml')  # small YOLO model
+model.train(
+    data="data.yaml",
+    epochs=50,
+    imgsz=640,
+    batch=8,
+    project='results',
+    name='car_detection',
+    exist_ok=True
+)
+
 
 ## Model Performance
 
 Evaluation metrics of the trained YOLOv8s model on the validation set:
 
-| Class     | Images | Instances | Precision | Recall | mAP50 | mAP50-95 |
-|-----------|--------|-----------|-----------|--------|-------|----------|
-| all       | 558    | 11950     | 0.927     | 0.922  | 0.962 | 0.837    |
-| empty     | 503    | 3650      | 0.888     | 0.898  | 0.944 | 0.779    |
-| occupied  | 484    | 8300      | 0.966     | 0.946  | 0.980 | 0.895    |
+| Class     | recision | Recall | mAP50 | mAP50-95 |
+|-----------|----------|--------|-------|----------|
+| all       |   0.927  | 0.922  | 0.962 | 0.837    |
+| empty     |   0.888  | 0.898  | 0.944 | 0.779    |
+| occupied  |   0.966  | 0.946  | 0.980 | 0.895    |
