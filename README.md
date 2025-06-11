@@ -44,6 +44,8 @@ This repository contains solutions to real-time parking space detection and car 
 - **Loss Function:** YOLOv8's native object detection loss (classification + box regression)
 - **Optimizer:** SGD with momentum  
 - **Augmentation:** HSV shift, flip, mosaic, mixup (Ultralytics defaults)
+  
+---
 
 ### Training Command
 ```bash
@@ -60,6 +62,7 @@ model.train(
     exist_ok=True
 )
 
+---
 
 ## Model Performance
 
@@ -71,6 +74,8 @@ Evaluation metrics of the trained YOLOv8s model on the validation set:
 | empty     |   0.888  | 0.898  | 0.944 | 0.779    |
 | occupied  |   0.966  | 0.946  | 0.980 | 0.895    |
 
+
+---
 
 ## 📹 Demo
 
