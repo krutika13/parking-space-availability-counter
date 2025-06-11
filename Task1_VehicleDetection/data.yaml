@@ -1,0 +1,18 @@
+# Dataset paths
+train: ../train_subset/images
+val: ../valid/images
+test: ../test/images
+
+# Number of classes
+nc: 2
+
+# Class names
+names: ['empty', 'occupied']
+
+
+roboflow:
+  workspace: krutika-ztivy
+  project: parking-space-ipm1b-owfia
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/krutika-ztivy/parking-space-ipm1b-owfia/dataset/1
