@@ -71,6 +71,7 @@ Evaluation metrics of the trained YOLOv8s model on the validation set:
 | empty     |   0.888  | 0.898  | 0.944 | 0.779    |
 | occupied  |   0.966  | 0.946  | 0.980 | 0.895    |
 
+
 ## 📹 Demo
 
 ![Real-Time Car Counting Demo](media/parking_demo.gif)
