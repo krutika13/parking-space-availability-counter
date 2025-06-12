@@ -29,7 +29,7 @@ This repository contains solutions to real-time parking space detection and car 
 
 ## 📦 Data Sources & Preprocessing
 
-- **Source:** Custom parking lot dataset (annotated with `empty` and `occupied`).
+- **Source:** PKLot (annotated with `empty` and `occupied`).
 - **Split:**
   - Train: 70%
   - Validation: 20%
