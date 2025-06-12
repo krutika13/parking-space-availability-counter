@@ -1,4 +1,4 @@
-# Parking Space and Car Counting (YOLOv8-based)
+# Parking Space and Car Counting (YOLOv8s-based)
 
 This repository contains solutions to real-time parking space detection and car counting using YOLOv8. It covers the following tasks:
 
